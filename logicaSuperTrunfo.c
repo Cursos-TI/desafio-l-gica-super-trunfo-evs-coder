@@ -171,6 +171,6 @@ int main() {
         printf("Operação inválida.\n");
         break;
     }
-
+    
     return 0;
 }
