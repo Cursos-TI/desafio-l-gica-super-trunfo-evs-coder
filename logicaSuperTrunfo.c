@@ -33,43 +33,43 @@ int main() {
 
     printf("\nEstado (letra A-H): ");
     scanf(" %c", &estado1);
-    printf("\nCódigo (1-4): ");
-    scanf("%d", codigo1);
+    printf("Código (1-4): ");
+    scanf("%d", &codigo1);
     getchar();
-    printf("\nNome da Cidade:");
+    printf("Nome da Cidade: ");
     fgets(cidade1, 20, stdin);
-    printf("\nQuantidade de Habitantes: ");
+    printf("Quantidade de Habitantes: ");
     scanf("%d", &populacao1);
-    printf("\nÁrea (km²): ");
+    printf("Área (km²): ");
+    scanf("%f", &area1);
+    printf("PIB: R$ ");
     scanf("%f", &pib1);
-    printf("\nPIB: R$ ");
-    scanf("%f", pib1);
-    printf("\nQuantidade de Pontos Turísticos: ");
+    printf("Quantidade de Pontos Turísticos: ");
     scanf("%d", &pturistico1);
 
-    float dpop1 = populacao1/area1;
-    float pibpercap1 = pib1/populacao1;
+    float dpop1 = (float)populacao1/area1;
+    float pibpercap1 = pib1/(float)populacao1;
 
     printf("\nAgora digite as informações da segunda carta:\n");
 
     printf("\nEstado (letra A-H): ");
     scanf(" %c", &estado2);
-    printf("\nCódigo (1-4): ");
-    scanf("%d", codigo2);
+    printf("Código (1-4): ");
+    scanf("%d", &codigo2);
     getchar();
-    printf("\nNome da Cidade:");
+    printf("Nome da Cidade: ");
     fgets(cidade2, 20, stdin);
-    printf("\nQuantidade de Habitantes: ");
+    printf("Quantidade de Habitantes: ");
     scanf("%d", &populacao2);
-    printf("\nÁrea (km²): ");
+    printf("Área (km²): ");
+    scanf("%f", &area2);
+    printf("PIB: R$ ");
     scanf("%f", &pib2);
-    printf("\nPIB: R$ ");
-    scanf("%f", pib2);
-    printf("\nQuantidade de Pontos Turísticos: ");
+    printf("Quantidade de Pontos Turísticos: ");
     scanf("%d", &pturistico2);
 
-    float dpop2 = populacao2/area2;
-    float pibpercap2 = pib2/populacao2;
+    float dpop2 = (float)populacao2/area2;
+    float pibpercap2 = pib2/(float)populacao2;
 
     // Comparação de Cartas:
     // Desenvolva a lógica de comparação entre duas cartas.
@@ -86,10 +86,11 @@ int main() {
 
     printf("\nAgora escolha o atributo das cartas a ser comparado:\n");
     printf("[1] Quantidade de Habitantes\n"
-    "[2] PIB\n"
-    "[3] Quantidade de Pontos Turísticos\n"
-    "[4] Densidade Populacional\n"
-    "[5] PIB per capita\n");
+    "[2] Área\n"
+    "[3] PIB\n"
+    "[4] Quantidade de Pontos Turísticos\n"
+    "[5] Densidade Populacional\n"
+    "[6] PIB per capita\n");
     scanf("%d", &resp);
 
     // Exibição dos Resultados:
@@ -99,45 +100,75 @@ int main() {
     // Exemplo:
     // printf("A cidade vencedora é: %s\n", cidadeVencedora);
 
-    char vencedorop1[100];
-    char vencedorop2[100];
-    char vencedorop3[100];
-    char vencedorop4[100];
-    char vencedorop5[100];
-
     switch (resp) {
         case 1: 
         printf("\nCarta 1: %d\n", populacao1);
         printf("Carta 2: %d\n", populacao2);
-        vencedorop1 = (populacao1 > populacao2) ? "A Carta 1 venceu! Ela possui maior número de habitantes." : "A Carta 2 venceu! Ela possui o maior número de habitantes";
-        printf("Resultado: %s", vencedorop1);
+        if (populacao1 > populacao2){
+            printf("A Carta 1 venceu! Ela possui maior número de habitantes.\n");
+        } else if (populacao2 > populacao1){
+            printf("A Carta 2 venceu! Ela possui maior número de habitantes.\n");
+        } else {
+            printf("Empate! Não houve vencedor para este atributo.\n");
+        };
         break;
         case 2:
         printf("\nCarta 1: %0.2f\n", area1);
         printf("Carta 2: %0.2f\n", area2);
-        vencedorop2 = (area1 > area2) ? "A Carta 1 venceu! Ela possui a maior área." : "A Carta 2 venceu! Ela possui a maior área.";
-        printf("Resultado: %s", vencedorop2);
+        if (area1 > area2){
+            printf("A Carta 1 venceu! Ela possui a maior área.\n");
+        } else if (area2 > area1) {
+            printf("A Carta 2 venceu! Ela possui a maior área.\n");
+        } else {
+            printf("Empate! Não houve vencedor para este atributo.\n");
+        };
         break;
         case 3:
-        printf("\nCarta 1: %0.2f\n", area1);
-        printf("Carta 2: %0.2f\n", area2);
-        vencedorop3 = (area1 > area2) ? "A Carta 1 venceu! Ela possui a maior área." : "A Carta 2 venceu! Ela possui a maior área.";
-        printf("Resultado: %s", vencedorop3);
+        printf("\nCarta 1: %0.2f\n", pib1);
+        printf("Carta 2: %0.2f\n", pib2);
+        if (pib1 > pib2){
+            printf("A Carta 1 venceu! Ela possui o maior PIB.\n");
+        } else if (pib2 > pib1) {
+            printf("A Carta 2 venceu! Ela possui o maior PIB.\n");
+        } else {
+            printf("Empate! Não houve vencedor para este atributo.");
+        };
         break;
         case 4:
-        printf("\nCarta 1: %0.2f\n", dpop1);
-        printf("Carta 2: %0.2f\n", dpop2);
-        vencedorop4 = (dpop1 < dpop2) ? "A Carta 1 venceu! Ela possui a menor densidade populacional." : "A Carta 2 venceu! Ela possui menor densidade populacional.";
-        printf("Resultado: %s", vencedorop4);
+        printf("\nCarta 1: %d\n", pturistico1);
+        printf("Carta 2: %d\n", pturistico2);
+        if (pturistico1 > pturistico2){
+            printf("A Carta 1 venceu! Ela possui mais pontos turísticos.\n");
+        } else if (pturistico2 > pturistico1) {
+            printf("A Carta 2 venceu! Ela possui mais pontos turísticos.\n");
+        } else {
+            printf("Empate! Não houve vencedor para este atributo.\n");
+        };
         break;
         case 5:
+        printf("\nCarta 1: %0.2f\n", dpop1);
+        printf("Carta 2: %0.2f\n", dpop2);
+        if (dpop1 < dpop2){
+            printf("A Carta 1 venceu! Ela possui menor densidade demográfica.\n");
+        } else if (dpop2 < dpop1) {
+            printf("A Carta 2 venceu! Ela possui menor densidade demográfica.\n");
+        } else {
+            printf("Empate! Não houve vencedor para este atributo.\n");
+        };
+        break;
+        case 6:
         printf("\nCarta 1: %0.2f\n", pibpercap1);
         printf("Carta 2: %0.2f\n", pibpercap2);
-        vencedorop5 = (pibpercap1 > pibpercap2) ? "A Carta 1 venceu! Ela possui maior PIB per capita." : "A Carta 2 venceu! Ela possui maior PIB per capita.";
-        printf("Resultado: %s", vencedorop5);
+        if (pibpercap1 > pibpercap2){
+            printf("A Carta 1 venceu! Ela possui o maior PIB per capita.\n");
+        } else if (pibpercap2 > pibpercap1){
+            printf("A Carta 2 venceu! Ela possui o maior PIB per capita.\n");
+        } else {
+            printf("Empate! Não houve vencedor para este atributo.\n");
+        };
         break;
         default:
-        printf("Operação invalida.");
+        printf("Operação inválida.\n");
         break;
     }
 
